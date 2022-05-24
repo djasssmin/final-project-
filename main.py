@@ -20,7 +20,6 @@ class Proghram:
         try:
             filename = askopenfilename()
             if [filename] == [()]:
-                print('return')
                 return
             if filename in self.file_names:
                 raise RecursionException()
@@ -52,13 +51,16 @@ class Proghram:
             messagebox.showerror('Error', 'Error nothing to delete')
 
     def save_changes(self):
-        text1 = self.text1Entry.get()
-        text2 = self.text2Entry.get()
-        changes(self.file_names, text1, text2)
-        self.file_names.clear()
-        messagebox.showinfo('OK!', 'OK!')
-        self.entry_clear()
-
+        try:
+            text1 = self.text1Entry.get()
+            text2 = self.text2Entry.get()
+            changes(self.file_names, text1, text2)
+            self.file_names.clear()
+            messagebox.showinfo('OK!', 'OK!')
+            self.entry_clear()
+        except ChoiceError:
+            messagebox.showerror('Choice Error', 'Choose files!')
+            
     def refrash_tree(self):
         for row in self.tree.get_children():
             self.tree.delete(row)
