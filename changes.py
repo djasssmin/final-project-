@@ -9,3 +9,4 @@ def changes(files, text1, text2):
         with open(file, 'w') as f:
             text = text.replace(text1, text2)
             f.write(text)    
+            
